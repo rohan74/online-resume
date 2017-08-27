@@ -128,13 +128,15 @@ education.display();
 
 
 projects.display = function(){
-     for( i=0;i<projects.projects.length;i=i+1){
-      $("#projects").append(HTMLprojectStart);
-     $(".project-entry:last").append(HTMLprojectTitle.replace("%data%",projects.projects[i].title));
-    $(".project-entry:last").append(HTMLprojectDates.replace("%data%",projects.projects[i].dates));
-    $(".project-entry:last").append(HTMLprojectDescription.replace("%data%",projects.projects[i].description));
-    $(".project-entry").append(HTMLprojectImage.replace("%data%", projects.projects[i].images));
-}
+      for( i=0;i<projects.projects.length;i=i+1){
+            $("#projects").append(HTMLprojectStart);
+         $(".project-entry:last").append(HTMLprojectTitle.replace("%data%",projects.projects[i].title));
+        $(".project-entry:last").append(HTMLprojectDates.replace("%data%",projects.projects[i].dates));
+        $(".project-entry:last").append(HTMLprojectDescription.replace("%data%",projects.projects[i].description));
+        projects.projects[i].images.forEach(function(image){
+            var formatProjectImage = HTMLprojectImage.replace("%data%", image);
+            $(".project-entry:last").append(formatProjectImage); });
+    };
     
 };
 
